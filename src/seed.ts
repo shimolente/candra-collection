@@ -55,10 +55,10 @@ const run = async () => {
 
   payload.logger.info('Seeding…')
 
-  const catMap: Record<string, string | number> = {}
+  const catMap: Record<string, number> = {}
   for (const c of categories) {
     const doc = await payload.create({ collection: 'categories', data: c })
-    catMap[c.name] = doc.id
+    catMap[c.name] = doc.id as number
   }
 
   for (const p of products) {
