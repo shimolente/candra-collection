@@ -128,12 +128,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         {related.length > 0 && (
           <div className="mt-20 md:mt-28">
             <div className="eyebrow mb-8">Related Products</div>
-            <div className="grid gap-px bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {related.map((p) => {
                 const img = mediaUrl(p.gallery?.[0]?.image)
                 return (
                   <Link key={p.id} href={p.slug ? `/catalog/${p.slug}` : '/catalog'}>
-                    <Card className="h-full border-0">
+                    <Card className="h-full">
                       <CardMedia>
                         {img ? (
                           // eslint-disable-next-line @next/next/no-img-element

@@ -13,7 +13,7 @@ function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
 function CardMedia({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn('relative aspect-[4/5] overflow-hidden bg-[var(--color-paper-2)]', className)}
+      className={cn('relative aspect-[4/5] overflow-hidden bg-white', className)}
       {...props}
     />
   )

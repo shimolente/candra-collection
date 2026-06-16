@@ -1,7 +1,7 @@
 {
   "name": "candra-web",
   "version": "1.0.0",
-  "description": "Candra Collection — company profile website (Payload + Next.js)",
+  "description": "Candra Collection \u2014 company profile website (Payload + Next.js)",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -16,11 +16,11 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
-    "@payloadcms/db-sqlite": "^3.85.0",
-    "@payloadcms/next": "^3.85.0",
-    "@payloadcms/richtext-lexical": "^3.85.0",
+    "@payloadcms/db-sqlite": "^3.85.1",
+    "@payloadcms/next": "^3.85.1",
+    "@payloadcms/richtext-lexical": "^3.85.1",
     "@payloadcms/storage-vercel-blob": "^3.85.1",
-    "@payloadcms/ui": "^3.85.0",
+    "@payloadcms/ui": "^3.85.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cross-env": "10.1.0",
@@ -30,7 +30,7 @@
     "lucide-react": "^0.469.0",
     "motion": "^12.40.0",
     "next": "16.2.6",
-    "payload": "^3.85.0",
+    "payload": "^3.85.1",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "sharp": "0.34.2",

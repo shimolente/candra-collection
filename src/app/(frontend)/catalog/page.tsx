@@ -60,13 +60,13 @@ export default async function CatalogPage({
         {products.length === 0 ? (
           <p className="mt-16 text-[var(--color-muted)]">No products in this category yet.</p>
         ) : (
-          <div className="mt-10 grid gap-px bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((p) => {
               const img = mediaUrl(p.gallery?.[0]?.image)
               const href = p.slug ? `/catalog/${p.slug}` : '/catalog'
               return (
                 <Link key={p.id} href={href}>
-                  <Card className="h-full border-0">
+                  <Card className="h-full">
                     <CardMedia>
                       {img ? (
                         // eslint-disable-next-line @next/next/no-img-element

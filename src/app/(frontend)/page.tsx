@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Play } from 'lucide-react'
 import { Container, SectionHeading } from '@/components/site/primitives'
+import { CompanyMedia } from '@/components/site/CompanyMedia'
 import { Button } from '@/components/ui/button'
 import { FaqAccordion, type FaqItem } from '@/components/site/FaqAccordion'
 import { Reveal, RevealGroup, RevealItem } from '@/components/site/Reveal'
@@ -83,6 +83,11 @@ export default async function HomePage() {
 
   const videoUrl = mediaUrl(home?.companyVideo)
   const videoPoster = mediaUrl(home?.videoPoster)
+  const aboutImage =
+    mediaUrl(home?.heroImage) ||
+    mediaUrl(featured[0]?.gallery?.[0]?.image) ||
+    categories.map((c) => mediaUrl(c.image)).find(Boolean) ||
+    null
   const servicesImg = fallbackImg || categories.map((c) => mediaUrl(c.image)).find(Boolean) || null
 
   return (
@@ -347,27 +352,14 @@ export default async function HomePage() {
                 </Link>
               </Reveal>
             </div>
-            <div className="order-1 flex justify-center md:order-2 md:justify-end">
-              <Reveal className="w-full max-w-[300px]">
-                <div className="relative aspect-[9/16] w-full overflow-hidden bg-black/40 ring-1 ring-white/10">
-                  {videoUrl ? (
-                    <video
-                      className="h-full w-full object-cover"
-                      src={videoUrl}
-                      poster={videoPoster || undefined}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20">
-                        <Play size={24} className="ml-0.5 text-white" />
-                      </div>
-                    </div>
-                  )}
-                </div>
+            <div className="order-1 md:order-2">
+              <Reveal>
+                <CompanyMedia
+                  imageUrl={aboutImage}
+                  imageAlt={home?.videoHeading || 'Candra Collection'}
+                  videoUrl={videoUrl}
+                  videoPoster={videoPoster}
+                />
               </Reveal>
             </div>
           </div>
