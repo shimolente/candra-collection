@@ -53,12 +53,9 @@ export function Header({ categories = [], megaImage }: { categories?: Cat[]; meg
       onMouseLeave={() => setMega(false)}
     >
       <div className="flex h-16 w-full items-center justify-between px-6 md:h-20 md:px-12 lg:px-16">
-        <Link
-          href="/"
-          onClick={() => setOpen(false)}
-          className="text-xl font-semibold tracking-tight md:text-2xl"
-        >
-          Candra<span className="text-[var(--color-muted)]"> Collection</span>
+        <Link href="/" onClick={() => setOpen(false)} className="inline-flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.svg" alt="Candra Collection" className="h-7 w-auto md:h-8" />
         </Link>
 
         {/* Desktop nav — group enables sibling dimming on hover */}

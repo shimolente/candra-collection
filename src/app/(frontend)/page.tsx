@@ -33,6 +33,7 @@ type HomeGlobal = {
   ctaLink?: string
   videoHeading?: string
   videoText?: string
+  videoImage?: Media
   companyVideo?: Media & { mimeType?: string }
   videoPoster?: Media
 }
@@ -83,7 +84,9 @@ export default async function HomePage() {
 
   const videoUrl = mediaUrl(home?.companyVideo)
   const videoPoster = mediaUrl(home?.videoPoster)
+  // Company-profile image beside the video: admin-set field first, then auto-fallbacks.
   const aboutImage =
+    mediaUrl(home?.videoImage) ||
     mediaUrl(home?.heroImage) ||
     mediaUrl(featured[0]?.gallery?.[0]?.image) ||
     categories.map((c) => mediaUrl(c.image)).find(Boolean) ||
@@ -102,7 +105,7 @@ export default async function HomePage() {
             <div className="absolute inset-x-0 bottom-24 z-10 flex flex-col items-center px-6 text-center md:bottom-28">
               <RevealGroup stagger={0.1}>
                 <RevealItem>
-                  <div className="eyebrow text-white/75">
+                  <div className="eyebrow text-white!">
                     {home?.heroEyebrow || 'Custom Uniform Specialist — Bali'}
                   </div>
                 </RevealItem>
@@ -255,6 +258,10 @@ export default async function HomePage() {
                   </RevealItem>
                 )
               })}
+              {/* White fillers so the trailing empty cells match the page bg, not the grey grid line */}
+              {Array.from({ length: (4 - (categories.length % 4)) % 4 }).map((_, i) => (
+                <div key={`pad-${i}`} aria-hidden className="aspect-square bg-white" />
+              ))}
             </RevealGroup>
           </Container>
         </section>

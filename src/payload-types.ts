@@ -681,6 +681,10 @@ export interface Home {
   videoHeading?: string | null;
   videoText?: string | null;
   /**
+   * Gambar yang tampil di samping video. Kosongkan untuk pakai gambar otomatis.
+   */
+  videoImage?: (number | null) | Media;
+  /**
    * Upload video portrait (mp4). Kosongkan untuk placeholder.
    */
   companyVideo?: (number | null) | Media;
@@ -744,6 +748,7 @@ export interface HomeSelect<T extends boolean = true> {
   introBody?: T;
   videoHeading?: T;
   videoText?: T;
+  videoImage?: T;
   companyVideo?: T;
   videoPoster?: T;
   updatedAt?: T;

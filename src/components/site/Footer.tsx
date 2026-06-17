@@ -74,7 +74,17 @@ export async function Footer() {
           <span>
             © {new Date().getFullYear()} {company}. All rights reserved.
           </span>
-          <span>Designed by WarnaMata</span>
+          <span>
+            Designed by{' '}
+            <a
+              href="https://catras-workspace.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white"
+            >
+              WarnaMata
+            </a>
+          </span>
         </div>
       </div>
     </footer>

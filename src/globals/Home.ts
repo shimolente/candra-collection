@@ -50,6 +50,13 @@ export const Home: GlobalConfig = {
         { name: 'videoHeading', type: 'text', label: 'Judul', defaultValue: 'We are Candra Collection Bali' },
         { name: 'videoText', type: 'textarea', label: 'Paragraf' },
         {
+          name: 'videoImage',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Gambar di Samping Video',
+          admin: { description: 'Gambar yang tampil di samping video. Kosongkan untuk pakai gambar otomatis.' },
+        },
+        {
           name: 'companyVideo',
           type: 'upload',
           relationTo: 'media',

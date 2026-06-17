@@ -4,6 +4,7 @@ import './styles.css'
 import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
 import { SmoothScroll } from '@/components/site/SmoothScroll'
+import { BottomBlur } from '@/components/site/BottomBlur'
 import { safeFind, mediaUrl } from '@/lib/data'
 
 const hanken = Hanken_Grotesk({
@@ -17,6 +18,7 @@ export const metadata = {
   title: 'Candra Collection — Custom Uniform Specialist, Bali',
   description:
     'Bali-based custom uniform manufacturer for hotels, restaurants, and corporate teams. Uniforms that represent your brand.',
+  icons: { icon: '/icon.svg' },
 }
 
 type Cat = { id: string; name: string; slug?: string; image?: { url?: string } }
@@ -41,15 +43,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           <main>{children}</main>
           <Footer />
         </SmoothScroll>
-        {/* Bottom scroll-affordance blur */}
-        <div
-          aria-hidden
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 h-20 backdrop-blur-[3px]"
-          style={{
-            WebkitMaskImage: 'linear-gradient(to top, black 0%, black 20%, transparent 100%)',
-            maskImage: 'linear-gradient(to top, black 0%, black 20%, transparent 100%)',
-          }}
-        />
+        {/* Bottom scroll-affordance blur — fades out as the footer comes into view */}
+        <BottomBlur />
       </body>
     </html>
   )

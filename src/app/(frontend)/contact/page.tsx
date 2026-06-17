@@ -9,6 +9,7 @@ type ContactInfo = {
   email?: string
   address?: string
   instagram?: string
+  mapsUrl?: string
 }
 
 const FALLBACK_WA = '+62 812-3456-7890'
@@ -18,6 +19,11 @@ export default async function ContactPage() {
   const c = (await getGlobalSafe<ContactInfo>('contact')) ?? {}
   const whatsapp = c.whatsapp || FALLBACK_WA
   const email = c.email || FALLBACK_EMAIL
+  const instagram = c.instagram || '@candracollection'
+  // Handle ("@name") → profile URL; pass full URLs through untouched.
+  const instagramHref = instagram.startsWith('http')
+    ? instagram
+    : `https://instagram.com/${instagram.replace(/^@/, '')}`
 
   return (
     <section className="py-16 md:py-24">
@@ -37,8 +43,8 @@ export default async function ContactPage() {
             {[
               ['WhatsApp', whatsapp, `https://wa.me/${whatsapp.replace(/\D/g, '')}`],
               ['Email', email, `mailto:${email}`],
-              ['Address', c.address || 'Denpasar, Bali, Indonesia', undefined],
-              ['Instagram', c.instagram || '@candracollection', undefined],
+              ['Address', c.address || 'Denpasar, Bali, Indonesia', c.mapsUrl],
+              ['Instagram', instagram, instagramHref],
             ].map(([label, value, href]) => (
               <div key={label} className="border-b border-[var(--color-line)] pb-6">
                 <div className="eyebrow mb-2">{label}</div>
