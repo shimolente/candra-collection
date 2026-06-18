@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { FaqAccordion, type FaqItem } from '@/components/site/FaqAccordion'
 import { Reveal, RevealGroup, RevealItem } from '@/components/site/Reveal'
 import { HeroCarousel } from '@/components/site/HeroCarousel'
-import { HowWeWork } from '@/components/site/HowWeWork'
+import { HowWeWork, type Step } from '@/components/site/HowWeWork'
 import { safeFind, getGlobalSafe, mediaUrl } from '@/lib/data'
 
 export const dynamic = 'force-dynamic'
@@ -45,6 +45,16 @@ const PROCESS_FALLBACK: Service[] = [
   { id: '2', title: 'Master Fitting', order: 2, summary: 'Sample garments are produced and refined until every fit, fabric, and finish meets your standard.' },
   { id: '3', title: 'Custom Design', order: 3, summary: 'Our team works with your brief — or builds from scratch — to create a uniform that reflects your brand.' },
   { id: '4', title: 'Bulk Production', order: 4, summary: 'Consistent quality, accurate quantities, and on-schedule delivery — ready for your team when you need them.' },
+]
+
+// Client journey — mirrors the "How we work, step by step" list on /services
+const PROCESS_STEPS: Step[] = [
+  { title: 'Consultation & Design', summary: 'We discuss your needs, design direction, and the fabrics that fit your brand.' },
+  { title: 'Quotation', summary: 'We send a clear quote tailored to your requirements and quantities.' },
+  { title: '50% Down Payment', summary: 'An initial payment confirms the order and starts the sampling stage.' },
+  { title: 'Measurement', summary: 'Sizes are captured via size chart or an on-site fitting with your team.' },
+  { title: 'Sampling & Approval', summary: 'We produce and refine samples until you approve, before full production.' },
+  { title: 'Production & Finishing', summary: 'Your order is produced and finished — roughly 1–1.5 months for large runs.' },
 ]
 
 const FAQ_FALLBACK: FaqItem[] = [
@@ -209,7 +219,7 @@ export default async function HomePage() {
               </p>
             </div>
           </Reveal>
-          <HowWeWork steps={process} />
+          <HowWeWork steps={PROCESS_STEPS} />
         </Container>
       </section>
 
@@ -225,7 +235,7 @@ export default async function HomePage() {
               />
             </Reveal>
             <RevealGroup
-              className="mt-16 grid grid-cols-2 gap-px bg-[var(--color-line)] md:grid-cols-4"
+              className="mt-16 grid grid-cols-2 border-t border-l border-[var(--color-line)] md:grid-cols-4"
               stagger={0.07}
             >
               {categories.map((c) => {
@@ -234,7 +244,7 @@ export default async function HomePage() {
                   <RevealItem key={c.id}>
                     <Link
                       href={c.slug ? `/catalog?category=${c.slug}` : '/catalog'}
-                      className="group relative flex aspect-square flex-col justify-end overflow-hidden bg-[var(--color-paper-2)] p-6 transition-colors hover:bg-[var(--color-paper)]"
+                      className="group relative flex aspect-square flex-col justify-end overflow-hidden border-r border-b border-[var(--color-line)] bg-[var(--color-paper-2)] p-6 transition-colors hover:bg-[var(--color-paper)]"
                     >
                       {img ? (
                         <>
@@ -258,10 +268,6 @@ export default async function HomePage() {
                   </RevealItem>
                 )
               })}
-              {/* White fillers so the trailing empty cells match the page bg, not the grey grid line */}
-              {Array.from({ length: (4 - (categories.length % 4)) % 4 }).map((_, i) => (
-                <div key={`pad-${i}`} aria-hidden className="aspect-square bg-white" />
-              ))}
             </RevealGroup>
           </Container>
         </section>

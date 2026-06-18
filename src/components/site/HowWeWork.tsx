@@ -2,11 +2,19 @@
 
 import { useRef } from 'react'
 import { motion, useScroll } from 'motion/react'
-import { MessagesSquare, Ruler, PenTool, Package, type LucideIcon } from 'lucide-react'
+import {
+  MessagesSquare,
+  FileText,
+  Wallet,
+  Ruler,
+  ClipboardCheck,
+  Package,
+  type LucideIcon,
+} from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const EASE = [0.22, 1, 0.36, 1] as const
-const ICONS: LucideIcon[] = [MessagesSquare, Ruler, PenTool, Package]
+const ICONS: LucideIcon[] = [MessagesSquare, FileText, Wallet, Ruler, ClipboardCheck, Package]
 
 export type Step = { title: string; summary?: string }
 
