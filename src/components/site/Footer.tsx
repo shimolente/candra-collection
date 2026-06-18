@@ -5,6 +5,8 @@ type Contact = {
   companyName?: string
   email?: string
   whatsapp?: string
+  address?: string
+  mapsUrl?: string
 }
 
 const columns = [
@@ -52,6 +54,22 @@ export async function Footer() {
           <ul className="mt-6 space-y-1 text-sm text-white/70">
             {contact?.email && <li>{contact.email}</li>}
             {contact?.whatsapp && <li>{contact.whatsapp}</li>}
+            {contact?.address && (
+              <li>
+                {contact.mapsUrl ? (
+                  <a
+                    href={contact.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-white"
+                  >
+                    {contact.address}
+                  </a>
+                ) : (
+                  contact.address
+                )}
+              </li>
+            )}
           </ul>
         </div>
         {columns.map((col) => (
