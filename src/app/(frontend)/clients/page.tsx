@@ -41,13 +41,13 @@ export default async function ClientsPage() {
         <Container>
           {clients.length > 0 ? (
             <RevealGroup
-              className="grid grid-cols-2 border-t border-l border-[var(--color-line)] sm:grid-cols-3 lg:grid-cols-5"
+              className="grid auto-rows-fr grid-cols-2 border-t border-l border-[var(--color-line)] sm:grid-cols-3 lg:grid-cols-5"
               stagger={0.04}
             >
               {clients.map((c) => {
                 const logo = mediaUrl(c.logo)
                 const inner = (
-                  <div className="flex aspect-[4/3] flex-col items-center justify-center gap-3 border-r border-b border-[var(--color-line)] bg-white p-6 transition-colors hover:bg-[var(--color-paper)]">
+                  <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-white p-6 transition-colors hover:bg-[var(--color-paper)]">
                     {logo ? (
                       <>
                         <Image
@@ -57,19 +57,27 @@ export default async function ClientsPage() {
                           height={64}
                           className="h-12 w-auto object-contain opacity-60 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                         />
-                        <span className="eyebrow">{c.name}</span>
+                        <span className="eyebrow line-clamp-2 text-center">{c.name}</span>
                       </>
                     ) : (
-                      <span className="text-center text-xl font-medium text-[var(--color-ink-soft)] transition-colors group-hover:text-[var(--color-ink)]">
+                      <span className="line-clamp-3 text-center text-xl font-medium text-[var(--color-ink-soft)] transition-colors group-hover:text-[var(--color-ink)]">
                         {c.name}
                       </span>
                     )}
                   </div>
                 )
                 return (
-                  <RevealItem key={c.id} className="group">
+                  <RevealItem
+                    key={c.id}
+                    className="group flex min-h-[9rem] border-r border-b border-[var(--color-line)]"
+                  >
                     {c.url ? (
-                      <a href={c.url} target="_blank" rel="noopener noreferrer" className="block">
+                      <a
+                        href={c.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex w-full"
+                      >
                         {inner}
                       </a>
                     ) : (
