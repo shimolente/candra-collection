@@ -5,6 +5,7 @@ import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical
 import { Container } from '@/components/site/primitives'
 import { Button } from '@/components/ui/button'
 import { Card, CardMedia, CardBody, CardTitle } from '@/components/ui/card'
+import { ProductGallery } from '@/components/site/ProductGallery'
 import { safeFind, mediaUrl } from '@/lib/data'
 
 export const dynamic = 'force-dynamic'
@@ -27,7 +28,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!product) notFound()
 
   const images = (product.gallery ?? []).map((g) => mediaUrl(g.image)).filter(Boolean) as string[]
-  const cover = images[0] ?? null
 
   // Related — same category, exclude self
   const related = product.category?.slug
@@ -67,27 +67,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
         <div className="grid gap-10 md:grid-cols-2 md:gap-16">
           {/* Gallery */}
-          <div>
-            <div className="aspect-[4/5] w-full overflow-hidden bg-[var(--color-paper-2)] ring-1 ring-[var(--color-line)]">
-              {cover ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={cover} alt={product.title} className="h-full w-full object-cover" />
-              ) : null}
-            </div>
-            {images.length > 1 && (
-              <div className="mt-3 grid grid-cols-4 gap-3">
-                {images.slice(0, 4).map((src, i) => (
-                  <div
-                    key={i}
-                    className="aspect-square overflow-hidden bg-[var(--color-paper-2)] ring-1 ring-[var(--color-line)]"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt="" className="h-full w-full object-cover" />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <ProductGallery images={images} title={product.title} />
 
           {/* Info */}
           <div>

@@ -4,7 +4,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { Container, SectionHeading } from '@/components/site/primitives'
 import { Button } from '@/components/ui/button'
-import { Reveal } from '@/components/site/Reveal'
+import { Reveal, RevealGroup, RevealItem } from '@/components/site/Reveal'
 import { safeFind, mediaUrl } from '@/lib/data'
 
 export const dynamic = 'force-dynamic'
@@ -64,6 +64,16 @@ const fallback: Service[] = [
       'On-time delivery across Indonesia',
     ],
   },
+]
+
+// The full client journey — from first conversation to delivery.
+const steps: [string, string][] = [
+  ['Consultation & Design', 'We discuss your needs, design direction, and the fabrics that fit your brand.'],
+  ['Quotation', 'We send a clear quote tailored to your requirements and quantities.'],
+  ['50% Down Payment', 'An initial payment confirms the order and starts the sampling stage.'],
+  ['Measurement', 'Sizes are captured via size chart or an on-site fitting with your team.'],
+  ['Sampling & Approval', 'We produce and refine samples until you approve, before full production.'],
+  ['Production & Finishing', 'Your order is produced and finished — roughly 1–1.5 months for large runs.'],
 ]
 
 export default async function ServicesPage() {
@@ -146,8 +156,37 @@ export default async function ServicesPage() {
         </Container>
       </section>
 
+      {/* How we work — step-by-step client journey */}
+      <section className="py-20 md:py-28">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              center
+              eyebrow="Our Process"
+              title="How we work, step by step."
+              intro="Beyond what we make, here's the journey we run with you — a clear, predictable path from first conversation to final delivery."
+            />
+          </Reveal>
+          <div className="mx-auto mt-16 max-w-5xl">
+            <RevealGroup className="grid gap-x-14 gap-y-12 sm:grid-cols-2" stagger={0.1}>
+              {steps.map(([title, body], i) => (
+                <RevealItem key={title} className="flex gap-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] text-base font-semibold text-white">
+                    {i + 1}
+                  </div>
+                  <div className="pt-1.5">
+                    <h3 className="text-xl font-semibold">{title}</h3>
+                    <p className="mt-1.5 text-[var(--color-ink-soft)]">{body}</p>
+                  </div>
+                </RevealItem>
+              ))}
+            </RevealGroup>
+          </div>
+        </Container>
+      </section>
+
       {/* CTA */}
-      <section className="bg-[var(--color-paper)] py-20 md:py-28">
+      <section className="border-t border-[var(--color-line)] bg-[var(--color-paper)] py-20 md:py-28">
         <Container className="text-center">
           <Reveal>
             <h2 className="mx-auto max-w-2xl text-3xl md:text-5xl">
