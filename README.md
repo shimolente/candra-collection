@@ -1,67 +1,64 @@
-# Payload Blank Template
+# Candra Collection — Company Profile Website
 
-This template comes configured with the bare minimum to get started on anything you need.
+Marketing + catalog site for **Candra Collection** (custom uniform manufacturer, Bali), with a built-in CMS for non-technical content editing.
 
-## Quick start
+## Stack
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+| Concern        | Tech                                                        |
+| -------------- | ----------------------------------------------------------- |
+| Framework      | Next.js 16 (App Router, Turbopack)                          |
+| CMS            | Payload 3 (admin at `/admin`)                               |
+| Database       | SQLite via `@payloadcms/db-sqlite` — local file in dev, [Turso](https://turso.tech) (libSQL) in production |
+| Media storage  | Vercel Blob (`@payloadcms/storage-vercel-blob`)             |
+| Styling        | Tailwind CSS v4                                             |
+| Hosting        | Vercel                                                       |
 
-## Quick Start - local setup
+## Environment
 
-To spin up this template locally, follow these steps:
+Copy `.env.example` → `.env` and fill in:
 
-### Clone
+```bash
+DATABASE_URI=libsql://<your-db>.turso.io   # or file:./candra-web.db for local
+DATABASE_AUTH_TOKEN=<turso-token>          # omit for local file DB
+PAYLOAD_SECRET=<random-32+-char-secret>
+BLOB_READ_WRITE_TOKEN=<vercel-blob-token>  # enables Vercel Blob media storage
+```
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+> `PAYLOAD_SECRET` signs auth tokens — use a long random value and never commit it. `.env`, `*.db`, and `/media` are gitignored.
 
-### Development
+## Local development
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URL` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+```bash
+npm install
+npm run dev          # http://localhost:3000  (admin: /admin)
+npm run seed         # optional: seed demo catalog/content
+```
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+With no `DATABASE_URI` set, Payload falls back to a local SQLite file (`./candra-web.db`).
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+## Useful scripts
 
-#### Docker (Optional)
+| Script                     | Purpose                                  |
+| -------------------------- | ---------------------------------------- |
+| `npm run dev`              | Dev server                               |
+| `npm run build`            | Production build                         |
+| `npm run start`            | Serve the production build               |
+| `npm run lint`             | ESLint                                   |
+| `npm run generate:types`   | Regenerate `payload-types.ts`            |
+| `npm run test:int`         | Vitest integration tests                 |
+| `npm run test:e2e`         | Playwright end-to-end tests              |
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+## Content model
 
-To do so, follow these steps:
+Collections (`src/collections`): `Products`, `Categories`, `Services`, `Posts` (blog), `Clients`, `Media`, `Users`.
+Globals (`src/globals`): `Home`, `Contact`, `Faq`.
 
-- Modify the `MONGODB_URL` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URL` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+Public read access is enabled on content collections; all writes require an authenticated admin user. `Posts` only expose `published` items to anonymous visitors.
 
-## How it works
+> **Blog:** the `Posts` collection and `/blog` routes exist but are currently hidden (unlinked, posts unpublished) until real article content is written.
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+## Deployment
 
-### Collections
+Deployed on **Vercel** (project `candra-collection`). Set the environment variables above in the Vercel project settings. Pushes to `main` deploy to production.
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
-
-- #### Users (Authentication)
-
-  Users are auth-enabled collections that have access to the admin panel.
-
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
-
-- #### Media
-
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
-
-### Docker
-
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
-
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
-
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+A `Dockerfile` is included for optional self-hosting; it requires `output: 'standalone'` in `next.config.ts`.

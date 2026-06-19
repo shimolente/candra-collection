@@ -2,7 +2,7 @@ import { Container, SectionHeading } from '@/components/site/primitives'
 import { ContactForm } from '@/components/site/ContactForm'
 import { getGlobalSafe } from '@/lib/data'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
 type ContactInfo = {
   whatsapp?: string

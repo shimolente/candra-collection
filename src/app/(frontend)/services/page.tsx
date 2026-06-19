@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Reveal, RevealGroup, RevealItem } from '@/components/site/Reveal'
 import { safeFind, mediaUrl } from '@/lib/data'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
 type Media = { url?: string; alt?: string }
 type Service = {

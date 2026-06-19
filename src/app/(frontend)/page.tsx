@@ -9,7 +9,7 @@ import { HeroCarousel } from '@/components/site/HeroCarousel'
 import { HowWeWork, type Step } from '@/components/site/HowWeWork'
 import { safeFind, getGlobalSafe, mediaUrl } from '@/lib/data'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
 type Media = { url?: string; alt?: string }
 type Category = { id: string; name: string; slug?: string; description?: string; image?: Media }

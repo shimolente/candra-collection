@@ -1,7 +1,7 @@
 import { Container, SectionHeading } from '@/components/site/primitives'
 import { Reveal, RevealGroup, RevealItem } from '@/components/site/Reveal'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
 const values: [string, string][] = [
   ['Premium Quality', 'Fabrics and stitching held to a consistent, dependable standard.'],

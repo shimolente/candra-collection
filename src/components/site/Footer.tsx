@@ -16,7 +16,7 @@ const columns = [
       { href: '/', label: 'Home' },
       { href: '/about', label: 'About Us' },
       { href: '/catalog', label: 'Our Shop' },
-      { href: '/blog', label: 'Blog Posts' },
+      { href: '/services', label: 'Services' },
     ],
   },
   {
@@ -28,15 +28,6 @@ const columns = [
       { href: '/catalog?category=polo', label: 'Polo' },
     ],
   },
-  {
-    title: 'Help',
-    links: [
-      { href: '/contact', label: 'Support' },
-      { href: '/services', label: 'Shipping & Returns' },
-      { href: '/about', label: 'Terms' },
-      { href: '/about', label: 'Privacy Policy' },
-    ],
-  },
 ]
 
 export async function Footer() {
@@ -45,7 +36,7 @@ export async function Footer() {
 
   return (
     <footer className="bg-[var(--color-ink)] text-white">
-      <div className="mx-auto grid max-w-[100rem] gap-12 px-6 py-16 md:grid-cols-4 md:px-12 md:py-20 lg:px-16">
+      <div className="mx-auto grid max-w-[100rem] gap-12 px-6 py-16 md:grid-cols-3 md:px-12 md:py-20 lg:px-16">
         <div>
           <div className="font-serif text-2xl">{company}</div>
           <p className="mt-4 max-w-xs text-sm text-white/60">

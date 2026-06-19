@@ -8,7 +8,7 @@ import { Card, CardMedia, CardBody, CardTitle } from '@/components/ui/card'
 import { ProductGallery } from '@/components/site/ProductGallery'
 import { safeFind, mediaUrl } from '@/lib/data'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
 type Product = {
   id: string | number

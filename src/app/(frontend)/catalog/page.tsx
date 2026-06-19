@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { safeFind, mediaUrl } from '@/lib/data'
 import { cn } from '@/lib/utils'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
 type Category = { id: string | number; name: string; slug?: string }
 type Product = {

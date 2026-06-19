@@ -6,7 +6,24 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
+// Security headers applied to every route. A strict Content-Security-Policy is
+// intentionally omitted: the Payload admin relies on inline scripts/styles and a
+// strict policy breaks it. Clickjacking is covered via X-Frame-Options below.
+const securityHeaders = [
+  { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+  { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+  {
+    key: 'Strict-Transport-Security',
+    value: 'max-age=63072000; includeSubDomains; preload',
+  },
+]
+
 const nextConfig: NextConfig = {
+  async headers() {
+    return [{ source: '/:path*', headers: securityHeaders }]
+  },
   images: {
     localPatterns: [
       {

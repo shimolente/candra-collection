@@ -6,6 +6,7 @@ import { Footer } from '@/components/site/Footer'
 import { SmoothScroll } from '@/components/site/SmoothScroll'
 import { BottomBlur } from '@/components/site/BottomBlur'
 import { safeFind, mediaUrl } from '@/lib/data'
+import { getSiteUrl } from '@/lib/site'
 
 const hanken = Hanken_Grotesk({
   subsets: ['latin'],
@@ -14,11 +15,23 @@ const hanken = Hanken_Grotesk({
   display: 'swap',
 })
 
+const siteUrl = getSiteUrl()
+
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Candra Collection — Custom Uniform Specialist, Bali',
   description:
     'Bali-based custom uniform manufacturer for hotels, restaurants, and corporate teams. Uniforms that represent your brand.',
   icons: { icon: '/icon.svg' },
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Candra Collection — Custom Uniform Specialist, Bali',
+    description:
+      'Bali-based custom uniform manufacturer for hotels, restaurants, and corporate teams.',
+    url: siteUrl,
+    siteName: 'Candra Collection',
+    type: 'website',
+  },
 }
 
 type Cat = { id: string; name: string; slug?: string; image?: { url?: string } }
