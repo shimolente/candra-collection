@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
+    "build:server": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=2048\" next build",
+    "start:standalone": "cross-env NODE_OPTIONS=--no-deprecation node .next/standalone/server.js",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",

@@ -21,6 +21,10 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  // Self-contained server bundle (.next/standalone) so the app can be built in
+  // CI/locally and the artifact deployed to managed Node.js hosting (Hostinger)
+  // without running the memory-heavy `next build` on the small server box.
+  output: 'standalone',
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }]
   },

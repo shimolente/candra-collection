@@ -49,6 +49,9 @@ test.env
 
 /media
 
+# Standalone deploy bundle (build artifact; contains a copied .env + db)
+/deploy
+
 # Playwright
 node_modules/
 /test-results/
