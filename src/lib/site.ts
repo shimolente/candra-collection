@@ -1,13 +1,9 @@
 /**
  * Canonical, absolute site origin (no trailing slash).
- * Priority: explicit env → Vercel production URL → known production domain.
+ * Priority: NEXT_PUBLIC_SITE_URL (build-time) → SITE_URL (runtime) → production domain.
  */
 export function getSiteUrl(): string {
-  const explicit = process.env.NEXT_PUBLIC_SITE_URL
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL
   if (explicit) return explicit.replace(/\/$/, '')
-
-  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  if (vercel) return `https://${vercel}`
-
-  return 'https://candra-collection.vercel.app'
+  return 'https://candracollectionuniform.com'
 }

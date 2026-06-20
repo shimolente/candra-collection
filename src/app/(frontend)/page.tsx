@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { getSiteUrl } from '@/lib/site'
 import { Container, SectionHeading } from '@/components/site/primitives'
 import { CompanyMedia } from '@/components/site/CompanyMedia'
 import { Button } from '@/components/ui/button'
@@ -103,8 +104,56 @@ export default async function HomePage() {
     null
   const servicesImg = fallbackImg || categories.map((c) => mediaUrl(c.image)).find(Boolean) || null
 
+  const siteUrl = getSiteUrl()
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ClothingStore',
+    '@id': `${siteUrl}/#clothingstore`,
+    name: 'Candra Collection',
+    alternateName: ['Candra Collection Bali', 'Candra Collection Uniform', 'Konveksi Seragam Candra Collection'],
+    description: 'Produsen dan konveksi seragam custom di Bali. Kami memproduksi seragam berkualitas untuk hotel, restoran, villa, dan perusahaan (corporate teams) dengan motif custom dan batik.',
+    url: siteUrl,
+    logo: `${siteUrl}/logo.svg`,
+    image: [
+      `${siteUrl}/og-image.jpg`,
+    ],
+    telephone: '+6281802103861',
+    priceRange: '$$',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Jl. Gunung Agung No. 105',
+      addressLocality: 'Denpasar Barat',
+      addressRegion: 'Bali',
+      postalCode: '80112',
+      addressCountry: 'ID',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: -8.6527716,
+      longitude: 115.2015255,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '09:00',
+        closes: '17:00',
+      },
+    ],
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Bali' },
+      { '@type': 'Country', name: 'Indonesia' },
+    ],
+    knowsAbout: ['custom uniform', 'hotel uniform Bali', 'restaurant uniform Bali', 'corporate uniform', 'batik uniform', 'seragam hotel Bali', 'seragam restoran Bali', 'konveksi seragam Bali'],
+    sameAs: [
+      'https://www.instagram.com/candracollection_uniform/',
+      'https://maps.app.goo.gl/hsPJWaLz7gEckZ5M8',
+    ],
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* ── HERO ── */}
       <section className="bg-white px-6 pt-8 pb-6">
         <div>

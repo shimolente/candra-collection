@@ -4,6 +4,11 @@ import { getGlobalSafe } from '@/lib/data'
 
 export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
+export const metadata = {
+  title: 'Contact Us — Candra Collection Bali',
+  description: 'Get in touch with Candra Collection to request a quote for custom uniforms. Based in Bali, serving hotels, restaurants, and businesses across Indonesia.',
+}
+
 type ContactInfo = {
   whatsapp?: string
   email?: string

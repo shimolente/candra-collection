@@ -10,6 +10,23 @@ import { safeFind, mediaUrl } from '@/lib/data'
 
 export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const found = await safeFind<Product>('products', { where: { slug: { equals: slug } }, limit: 1 })
+  const product = found[0]
+  if (!product) return {}
+  const firstImage = mediaUrl(product.gallery?.[0]?.image)
+  return {
+    title: `${product.title} — Candra Collection Bali`,
+    description: product.shortDescription || `Custom ${product.title} uniform made to order in Bali by Candra Collection. Available for hotels, restaurants, and corporate clients.`,
+    openGraph: {
+      title: `${product.title} — Candra Collection Bali`,
+      description: product.shortDescription || `Custom ${product.title} uniform made to order in Bali.`,
+      ...(firstImage ? { images: [{ url: firstImage, alt: product.title }] } : {}),
+    },
+  }
+}
+
 type Product = {
   id: string | number
   title: string

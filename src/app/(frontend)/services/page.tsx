@@ -9,6 +9,11 @@ import { safeFind, mediaUrl } from '@/lib/data'
 
 export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
+export const metadata = {
+  title: 'Our Services — Candra Collection Bali',
+  description: 'Custom uniform production services in Bali: consultation, sampling, bulk production, and delivery across Indonesia for hotels, restaurants, and corporate clients.',
+}
+
 type Media = { url?: string; alt?: string }
 type Service = {
   id: string
