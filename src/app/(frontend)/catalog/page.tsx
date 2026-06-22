@@ -8,8 +8,9 @@ import { cn } from '@/lib/utils'
 export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
 export const metadata = {
-  title: 'Catalog — Custom Uniforms | Candra Collection Bali',
-  description: 'Browse our full catalog of custom uniforms — hotel, restaurant, spa, corporate, batik, and more. Made to order in Bali, delivered across Indonesia.',
+  title: 'Katalog Seragam Hotel, Restaurant & Spa Bali | Candra Collection',
+  description: 'Katalog custom uniform Candra Collection — seragam hotel, restaurant, spa, front office, housekeeping, corporate, polo, dan batik. Made to order di Bali, kirim ke seluruh Indonesia.',
+  alternates: { canonical: '/catalog' },
 }
 
 type Category = { id: string | number; name: string; slug?: string }

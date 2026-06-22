@@ -5,8 +5,9 @@ import { getGlobalSafe } from '@/lib/data'
 export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
 export const metadata = {
-  title: 'Contact Us — Candra Collection Bali',
-  description: 'Get in touch with Candra Collection to request a quote for custom uniforms. Based in Bali, serving hotels, restaurants, and businesses across Indonesia.',
+  title: 'Hubungi Candra Collection | Vendor Seragam Bali (WhatsApp)',
+  description: 'Hubungi Candra Collection untuk minta penawaran seragam custom. Vendor seragam di Bali melayani hotel, restaurant, spa, dan corporate di seluruh Indonesia via WhatsApp.',
+  alternates: { canonical: '/contact' },
 }
 
 type ContactInfo = {

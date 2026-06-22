@@ -12,6 +12,10 @@ import { safeFind, getGlobalSafe, mediaUrl } from '@/lib/data'
 
 export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
+export const metadata = {
+  alternates: { canonical: '/' },
+}
+
 type Media = { url?: string; alt?: string }
 type Category = { id: string; name: string; slug?: string; description?: string; image?: Media }
 type Product = {
@@ -118,6 +122,7 @@ export default async function HomePage() {
       `${siteUrl}/og-image.jpg`,
     ],
     telephone: '+6281802103861',
+    email: 'candracollection.uniform@gmail.com',
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
@@ -142,6 +147,14 @@ export default async function HomePage() {
     ],
     areaServed: [
       { '@type': 'AdministrativeArea', name: 'Bali' },
+      { '@type': 'City', name: 'Denpasar' },
+      { '@type': 'City', name: 'Kuta' },
+      { '@type': 'City', name: 'Seminyak' },
+      { '@type': 'City', name: 'Canggu' },
+      { '@type': 'City', name: 'Ubud' },
+      { '@type': 'City', name: 'Nusa Dua' },
+      { '@type': 'City', name: 'Sanur' },
+      { '@type': 'City', name: 'Uluwatu' },
       { '@type': 'Country', name: 'Indonesia' },
     ],
     knowsAbout: ['custom uniform', 'hotel uniform Bali', 'restaurant uniform Bali', 'corporate uniform', 'batik uniform', 'seragam hotel Bali', 'seragam restoran Bali', 'konveksi seragam Bali'],
@@ -151,9 +164,20 @@ export default async function HomePage() {
     ],
   }
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       {/* ── HERO ── */}
       <section className="bg-white px-6 pt-8 pb-6">
         <div>
@@ -477,6 +501,60 @@ export default async function HomePage() {
               <FaqAccordion items={faqItems} />
             </div>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* ── LOCAL SEO (Bahasa Indonesia) ── */}
+      <section className="border-t border-[var(--color-line)] py-24 md:py-36" lang="id">
+        <Container>
+          <div className="grid gap-12 md:grid-cols-2 md:gap-20">
+            <Reveal>
+              <div>
+                <div className="eyebrow">Vendor Seragam Bali</div>
+                <h2 className="mt-5 max-w-xl text-3xl md:text-5xl">
+                  Vendor Seragam Hotel, Villa, Restaurant &amp; Spa di Bali
+                </h2>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="space-y-5 text-[var(--color-ink-soft)]">
+                <p>
+                  Candra Collection adalah vendor seragam dan konveksi uniform di Bali yang melayani
+                  pembuatan seragam hotel, villa, restaurant, spa, kantor, kitchen, front office,
+                  housekeeping, engineering, hingga corporate uniform. Kami menyediakan layanan
+                  custom design, pemilihan bahan, pembuatan sampel, bordir logo, fitting ukuran,
+                  serta produksi seragam dalam jumlah kecil maupun besar.
+                </p>
+                <p>
+                  Sebagai konveksi seragam di Denpasar, kami melayani area Bali seperti Denpasar,
+                  Kuta, Seminyak, Canggu, Ubud, Nusa Dua, Sanur, dan Uluwatu — dengan kualitas
+                  jahitan dan bahan yang konsisten untuk kebutuhan hospitality maupun perusahaan.
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {[
+                    'Seragam Hotel Bali',
+                    'Seragam Restaurant',
+                    'Seragam Spa',
+                    'Hospitality Uniform',
+                    'Custom Uniform Bali',
+                    'Konveksi Denpasar',
+                  ].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-[var(--color-line)] px-4 py-1.5 text-xs font-medium text-[var(--color-ink-soft)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="pt-2">
+                  <Link href={ctaLink} className="eyebrow inline-block transition-colors hover:text-[var(--color-ink)]">
+                    Minta Penawaran Seragam &rarr;
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </Container>
       </section>
 

@@ -17,8 +17,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!product) return {}
   const firstImage = mediaUrl(product.gallery?.[0]?.image)
   return {
-    title: `${product.title} — Candra Collection Bali`,
-    description: product.shortDescription || `Custom ${product.title} uniform made to order in Bali by Candra Collection. Available for hotels, restaurants, and corporate clients.`,
+    title: `${product.title} Custom Bali | Seragam ${product.title} — Candra Collection`,
+    description: product.shortDescription || `Custom ${product.title} made to order in Bali by Candra Collection. Seragam ${product.title} untuk hotel, restaurant, spa, dan corporate.`,
+    alternates: { canonical: `/catalog/${slug}` },
     openGraph: {
       title: `${product.title} — Candra Collection Bali`,
       description: product.shortDescription || `Custom ${product.title} uniform made to order in Bali.`,

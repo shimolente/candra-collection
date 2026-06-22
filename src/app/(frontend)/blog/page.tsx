@@ -4,6 +4,17 @@ import { safeFind, mediaUrl } from '@/lib/data'
 
 export const dynamic = 'force-dynamic'
 
+// Blog is intentionally hidden from search until real, published articles exist
+// (it's also excluded from sitemap.xml). The current cards are placeholders/drafts.
+// To launch the blog for SEO: publish real Posts, then remove the `robots` line below.
+export const metadata = {
+  title: 'Blog — Artikel & Panduan Seragam | Candra Collection Bali',
+  description:
+    'Panduan bahan seragam, tips memilih vendor uniform, dan proses produksi seragam hotel & restaurant di Bali.',
+  alternates: { canonical: '/blog' },
+  robots: { index: false, follow: true },
+}
+
 type Post = {
   id: string
   title: string

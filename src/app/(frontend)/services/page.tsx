@@ -10,8 +10,9 @@ import { safeFind, mediaUrl } from '@/lib/data'
 export const revalidate = 3600 // ISR: cache 1h, revalidate hourly
 
 export const metadata = {
-  title: 'Our Services — Candra Collection Bali',
-  description: 'Custom uniform production services in Bali: consultation, sampling, bulk production, and delivery across Indonesia for hotels, restaurants, and corporate clients.',
+  title: 'Jasa Pembuatan Seragam Custom Bali — Desain, Bordir & Produksi Uniform',
+  description: 'Jasa pembuatan seragam custom di Bali: konsultasi desain, pemilihan bahan, sampling, bordir logo, fitting, dan produksi uniform untuk hotel, restaurant, spa, dan corporate.',
+  alternates: { canonical: '/services' },
 }
 
 type Media = { url?: string; alt?: string }

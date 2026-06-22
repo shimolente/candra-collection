@@ -11,9 +11,10 @@ type Media = { url?: string; alt?: string }
 type Client = { id: string; name: string; logo?: Media; url?: string }
 
 export const metadata = {
-  title: 'Our Clients — Candra Collection',
+  title: 'Klien Kami | Vendor Seragam Hotel & Restaurant Bali — Candra Collection',
   description:
-    'Hotels, villas, restaurants, and brands across Indonesia that trust Candra Collection for their custom uniforms.',
+    'Hotel, villa, restaurant, dan brand di seluruh Indonesia yang mempercayakan seragam custom mereka kepada Candra Collection, vendor seragam di Bali.',
+  alternates: { canonical: '/clients' },
 }
 
 export default async function ClientsPage() {

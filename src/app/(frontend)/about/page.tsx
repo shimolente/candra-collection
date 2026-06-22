@@ -1,6 +1,7 @@
 export const metadata = {
-  title: 'About Us — Candra Collection Bali',
-  description: 'Candra Collection is a custom uniform specialist based in Bali, serving hotels, villas, restaurants, and corporate clients across Indonesia.',
+  title: 'Tentang Candra Collection | Konveksi & Vendor Seragam Bali',
+  description: 'Candra Collection adalah vendor seragam dan konveksi custom uniform di Bali untuk hotel, villa, restaurant, spa, dan corporate di seluruh Indonesia.',
+  alternates: { canonical: '/about' },
 }
 
 import { Container, SectionHeading } from '@/components/site/primitives'
