@@ -504,60 +504,6 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* ── LOCAL SEO (Bahasa Indonesia) ── */}
-      <section className="border-t border-[var(--color-line)] py-24 md:py-36" lang="id">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-2 md:gap-20">
-            <Reveal>
-              <div>
-                <div className="eyebrow">Vendor Seragam Bali</div>
-                <h2 className="mt-5 max-w-xl text-3xl md:text-5xl">
-                  Vendor Seragam Hotel, Villa, Restaurant &amp; Spa di Bali
-                </h2>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="space-y-5 text-[var(--color-ink-soft)]">
-                <p>
-                  Candra Collection adalah vendor seragam dan konveksi uniform di Bali yang melayani
-                  pembuatan seragam hotel, villa, restaurant, spa, kantor, kitchen, front office,
-                  housekeeping, engineering, hingga corporate uniform. Kami menyediakan layanan
-                  custom design, pemilihan bahan, pembuatan sampel, bordir logo, fitting ukuran,
-                  serta produksi seragam dalam jumlah kecil maupun besar.
-                </p>
-                <p>
-                  Sebagai konveksi seragam di Denpasar, kami melayani area Bali seperti Denpasar,
-                  Kuta, Seminyak, Canggu, Ubud, Nusa Dua, Sanur, dan Uluwatu — dengan kualitas
-                  jahitan dan bahan yang konsisten untuk kebutuhan hospitality maupun perusahaan.
-                </p>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {[
-                    'Seragam Hotel Bali',
-                    'Seragam Restaurant',
-                    'Seragam Spa',
-                    'Hospitality Uniform',
-                    'Custom Uniform Bali',
-                    'Konveksi Denpasar',
-                  ].map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-[var(--color-line)] px-4 py-1.5 text-xs font-medium text-[var(--color-ink-soft)]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="pt-2">
-                  <Link href={ctaLink} className="eyebrow inline-block transition-colors hover:text-[var(--color-ink)]">
-                    Minta Penawaran Seragam &rarr;
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
-
       {/* ── CTA BAND ── */}
       <section className="border-t border-[var(--color-line)] bg-[var(--color-paper)] py-24 md:py-36">
         <Container className="text-center">
