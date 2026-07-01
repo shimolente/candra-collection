@@ -1,5 +1,6 @@
 import React from 'react'
 import { Hanken_Grotesk } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import './styles.css'
 import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
@@ -81,6 +82,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         {/* Bottom scroll-affordance blur — fades out as the footer comes into view */}
         <BottomBlur />
       </body>
+      <GoogleAnalytics gaId="G-0GP7F1SQCQ" />
     </html>
   )
 }

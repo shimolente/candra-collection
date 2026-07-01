@@ -1,7 +1,7 @@
 {
   "name": "candra-web",
   "version": "1.0.0",
-  "description": "Candra Collection \u2014 company profile website (Payload + Next.js)",
+  "description": "Candra Collection — company profile website (Payload + Next.js)",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -21,6 +21,7 @@
     "test:e2e": "cross-env NODE_OPTIONS=--no-deprecation playwright test"
   },
   "dependencies": {
+    "@next/third-parties": "^16.2.9",
     "@payloadcms/db-sqlite": "^3.85.1",
     "@payloadcms/next": "^3.85.1",
     "@payloadcms/richtext-lexical": "^3.85.1",
